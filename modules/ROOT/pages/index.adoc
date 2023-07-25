@@ -1,0 +1,8 @@
+= Welcome to Component B!
+:navtitle: Welcome
+
+This is the automatic start page for version *{page-component-display-version}* of Component B.
+
+Component B is one of two documentation components in the Antora Demo.
+The other docs component, Component A, can be accessed using the component selector menu (aka component drawer) at the bottom of the menu on the left side of the page.
+
