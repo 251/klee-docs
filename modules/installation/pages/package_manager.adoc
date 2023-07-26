@@ -1,0 +1,106 @@
+= Installation via Package Manager
+:description: Use your package manager to install KLEE.
+:sectanchors:
+:page-tags: nix,FreeBSD,homebrew,macOS
+
+Check if you can use your https://repology.org/project/klee/versions[package manager] for Arch Linux, openSUSE Tumbleweed, and several other distributions
+
+## Nix
+
+### Quick Start
+
+KLEE has a package on https://search.nixos.org/packages?query=klee&show=klee[nixpkgs] that is usable on x86_64 Linux systems.
+Getting started with it is as fast as or faster than using the xref:docker.adoc[Docker version], and carries all the https://r13y.com/[reproducible build guarantees] of the Nix build system.
+
+To make the package available in an ephemeral shell, ensure https://nixos.org/download.html[you have Nix or are running NixOS], and run:
+
+[source,bash]
+----
+$ nix-shell -p klee
+----
+
+If the package was built on https://hydra.nixos.org/[Hydra] and is available on the https://cache.nixos.org/[NixOS binary cache], it will simply download and be instantly available to run.
+Otherwise, the package will build.
+
+### What is Nix?
+
+- Nix is a build system focused on reproducibility.
+Build scripts are written in a functional language, also called Nix.
+- https://github.com/NixOS/nixpkgs[nixpkgs] contains knowledge on how to build many packages for Linux and MacOS systems.
+- NixOS is an entire Linux-based operating system built with nixpkgs.
+NixOS is just Nix to its logical conclusion -- the entire system configuration is immutable and built functionally from several packages.
+
+The instructions for building KLEE in nixpkgs are https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/science/logic/klee/default.nix[located here].
+The Nix package runs the KLEE unit and system test suite as a sanity check before the build completes.
+
+### Installing KLEE system-wide in NixOS
+
+If you are running NixOS and wish to install KLEE systemwide, simply include it in `environment.systemPackages` in your NixOS configuration.
+
+[source,nix]
+----
+environment.systemPackages = with pkgs; [
+  klee
+];
+----
+
+### Advanced package use
+
+Currently, the Nix package for KLEE takes a "debug" argument that defaults to false.
+If you want a debug build of KLEE, you would use the https://nixos.org/guides/nix-pills/nixpkgs-overriding-packages.html[nixpkgs override pattern] to force it to true.
+
+NOTE: If any of the build inputs change from the defaults, Nix will no longer be able to fetch it from the NixOS binary cache, and a local build will occur.
+
+[source,bash]
+----
+$ nix-shell -p 'klee.override { debug = true; }'
+----
+
+
+## FreeBSD
+
+FreeBSD users can install the latest release with `pkg install klee` or by building the https://www.freshports.org/security/klee[security/klee] port themselves.
+
+## Homebrew and macOS
+
+The current procedure for installing KLEE using https://brew.sh/[Homebrew] is outlined below.
+
+1. Install dependencies (Linux only): Homebrew and KLEE require some additional dependencies on Linux.
+On Ubuntu:
++
+[source,bash]
+----
+$ sudo apt-get install build-essential curl file git
+----
++
+For Ubuntu>=16.04, some additional packages my be required (by KLEE) along with the ones mentioned above:
++
+[source,bash]
+----
+$ sudo apt-get install gcc-multilib g++-multilib
+----
+
+2. Install Homebrew: The latest installation instructions will always be on the https://brew.sh[homepage].
+Homebrew runs on macOS and Linux, but can be installed on Windows 10 using WSL.
+Currently, you can install Homebrew with:
++
+[source,bash]
+----
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+----
+
+3. Install KLEE: You can now install KLEE with:
++
+[source,bash]
+----
+$ brew install klee
+----
++
+This will install a pre-built binary package on macOS, but builds KLEE from source on Linux.
+Pull requests to improve or update the Homebrew KLEE package are welcome at the https://github.com/Homebrew/homebrew-core[Homebrew Core repository].
+
+4. You're ready to go!
+
+TIP: For testing real applications (e.g. Coreutils), you may need to increase your system's open file limit (ulimit -n).
+Something between 10000 and 999999 should work.
+In most cases, the hard limit will have to be increased first, so it is best to directly edit the corresponding configuration file (e.g., `/etc/security/limits.conf`).
