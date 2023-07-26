@@ -152,7 +152,7 @@ The build script automatically detects under which platform it runs (e.g., Linux
 
 This platform information is used to resort to required build instructions from the most platform-specific version to the least.
 
-As example, to build the __STP__ solver, `build.sh` finds the general component information in `v-stp.inc`.
+As example, to build the _STP_ solver, `build.sh` finds the general component information in `v-stp.inc`.
 To build STP under a Linux Ubuntu 22.04, the build script will try to acquire information from `p-stp-linux-ubuntu-22.04.inc`, which it won't find.
 In subsequent steps, it will try to resolve functionality from `p-stp-linux-ubuntu.inc`, then `p-stp-linux.inc` and last `p-stp.inc`.
 
@@ -220,7 +220,7 @@ In a nutshell, if the component is not available, try to get a pre-built version
 Let's start with the case that the package has to be built from scratch.
 For this, the last four steps are needed, and the associated functions should be added to the `p-COMPONENT.inc` file if needed.
 
-For __STP__, `setup_build_variables_stp()` in `p-stp.inc` will provide different build variables required for the next steps.
+For _STP_, `setup_build_variables_stp()` in `p-stp.inc` will provide different build variables required for the next steps.
 
 To download (`download_stp`), build (`build_stp`), and (`install_stp`) provide each function.
 To speed up the build process, many functions should be guarded, e.g.
@@ -287,7 +287,7 @@ The install script tries to find a satisfying function depending on the system a
 With the previously defined functions, on Ubuntu 22.04, the script will use the more general `p-stp-linux-ubuntu.inc` as a `p-stp-linux-ubuntu-22.04.inc` is not available.
 
 To foster reusability, source-built components should not be installed into systems directories, instead, they should be kept in separate directories.
-For example, for __STP__, it is build in something like `STP_BUILD_PATH="${BASE}/stp-${STP_VERSION}-build"` and installed into `STP_INSTALL_PATH="${BASE}/stp-${STP_VERSION}-install`.
+For example, for _STP_, it is build in something like `STP_BUILD_PATH="$\{BASE}/stp-$\{STP_VERSION}-build"` and installed into `STP_INSTALL_PATH="$\{BASE}/stp-$\{STP_VERSION}-install`.
 This allows us to have multiple software versions and differently optimized versions simultaneously on a system and link them appropriately.
 
 #### Using pre-built packages
@@ -336,7 +336,7 @@ If `build.sh` is executed with `--docker`, the script will use dockerized compon
 To enable this functionality, two functions have to be provided: `get_docker_config_id_COMPONENT()` and `get_build_artifacts_COMPONENT()`.
 
 The `get_docker_config_id_COMPONENT` provides the name of the artifact that the build script should look for, e.g., a version string or build configuration.
-The build script tries to access the docker image: `${REPOSITORY}/${COMPONENT}:${ID}`, if found it will be added as a dependency of the current docker environment.
+The build script tries to access the docker image: `$\{REPOSITORY}/$\{COMPONENT}:$\{ID}`, if found it will be added as a dependency of the current docker environment.
 
 For example, if KLEE should be built and depends on STP version 2.3.3, `klee/stp:2.3.3_ubuntu` is added as a dependent image if available.
 The built artifact is transferred from the dependent image into the target image.
