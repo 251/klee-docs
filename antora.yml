@@ -3,3 +3,4 @@ title: KLEE
 version: 3.0
 nav:
 - modules/ROOT/nav.adoc
+- modules/installation/nav.adoc
