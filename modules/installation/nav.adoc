@@ -1,5 +1,6 @@
-* xref:klee_web.adoc[]
-* xref:docker.adoc[]
-* xref:package_manager.adoc[]
-* xref:manual_installation.adoc[]
-* xref:build_script.adoc[]
+. Installation
+** xref:klee_web.adoc[]
+** xref:docker.adoc[]
+** xref:package_manager.adoc[]
+** xref:manual_installation.adoc[]
+** xref:build_script.adoc[]
