@@ -1,6 +1,8 @@
-.Installation
+.Quick Start
 * xref:klee_web.adoc[]
 * xref:docker.adoc[]
+
+.Installation
 * xref:package_manager.adoc[]
 * xref:manual_installation.adoc[]
 * xref:build_script.adoc[]
