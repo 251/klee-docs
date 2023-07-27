@@ -1,0 +1,19 @@
+= External Resources
+:description: External resources.
+:sectanchors:
+
+We also recommend the following external resources.
+When using them, please take into account that they might be using old versions of KLEE. 
+
+. https://adalogics.com/blog/symbolic-execution-with-klee[Symbolic execution with KLEE]: A set of four instructional videos introducing KLEE, starting with how to get started with KLEE and ending with a demo that finds memory corruption bugs in real code.
+. http://feliam.wordpress.com/2010/10/07/the-symbolic-maze/[Solving a maze with KLEE]: A nice explanation of how symbolic execution can be used to generate interesting program inputs. The example shows how to use KLEE to find all the solutions to a maze game.
+. https://gitlab.com/Manouchehri/Matryoshka-Stage-2/blob/master/stage2.md[Keygenning with KLEE and Hex-Rays]: A beginners explanation of using symbolic execution to solve a small binary's pseudocode.
+. https://doar-e.github.io/blog/2015/08/18/keygenning-with-klee/[Keygenning with KLEE]: A more in-depth guide to using KLEE for key generation.
+. https://verificationglasses.wordpress.com/2020/10/02/symbolic-execution-klee/[How to generate tests automatically?]: A basic introduction to symbolic execution with KLEE.
+. https://verificationglasses.wordpress.com/2020/10/17/klee-binary-search/): A tutorial on using KLEE to test a binary search implementation[Using KLEE to generate tests for binary search].
+. https://www.alchemistowl.org/pocorgtfo/pocorgtfo18.pdf[A Guide to KLEE LLVM Execution Engine Internals]: A quick overview of KLEE's internals and core classes in https://github.com/angea/pocorgtfo[PoC||GTFO] 0x18 (pp. 51).
+. https://github.com/project-oak/rust-verification-tools/[Testing Rust programs with KLEE]: A collection of tools/libraries to support testing of Rust programs with KLEE.
+. https://yurichev.com/writings/SAT_SMT_by_example.pdf[SAT/SMT by example]: A comprehensive guide focusing on using SAT and SMT solvers, which includes lots of interesting examples involving KLEE.
+. http://ccadar.blogspot.com/2020/07/measuring-coverage-achieved-by-symbolic.html[Measuring the coverage achieved by symbolic execution]: A blog post that discusses the difference between the internal coverage reported by KLEE and the external coverage reported by a tool such as GCov.
+. https://blog.trailofbits.com/2019/08/30/binary-symbolic-execution-with-klee-native/[Binary symbolic execution with KLEE-Native]: An extension of KLEE that analyses binaries by lifting them to LLVM IR
+. https://mouha.be/sha-3-buffer-overflow-part-2/[SHA-3 Buffer Overflow]: Finding a bug in a sha-3 implementation with KLEE
