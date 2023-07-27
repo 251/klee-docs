@@ -1,2 +1,6 @@
 .Tutorials
+* xref:function.adoc[]
+* xref:regexlib.adoc[]
+* xref:symbolic_environment.adoc[]
+* xref:coreutils.adoc[]
 * xref:external_resources.adoc[]
