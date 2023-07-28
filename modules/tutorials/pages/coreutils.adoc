@@ -268,7 +268,7 @@ usage: (klee_init_env) [options] [program arguments]
 
 As an example, lets run echo with a symbolic argument of 3 characters.
 
-[source,bash]
+[source,bash,subs="+macros"]
 ----
 src$ klee --libc=uclibc --posix-runtime ./echo.bc --sym-arg 3
 KLEE: NOTE: Using klee-uclibc : /usr/local/lib/klee/runtime/klee-uclibc.bca
@@ -317,7 +317,7 @@ There is NO WARRANTY, to the extent permitted by law.
   \v     vertical tab
 
 NOTE: your shell may have its own version of echo, which usually supersedes
-the version described here.  Please refer to your shell's documentation
+the version described here.  Please refer to your shell+++'+++s documentation
 for details about the options it supports.
 
 Report bugs to <bug-coreutils@gnu.org>.
@@ -550,7 +550,7 @@ Here is a fragment from the output:
 ----
 
 The far left hand column is the number of times each line was executed; **-**
-means the line has no executable code, and **#####** means the line was never
+means the line has no executable code, and `\\#####` means the line was never
 covered.
 As you can see, the uncovered lines here correspond exactly to the uncovered lines as reported in `kcachegrind`.
 
