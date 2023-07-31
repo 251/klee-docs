@@ -39,11 +39,11 @@ $ kleaver --clear-array-decls-after-query=true klee-queries.kquery
 
 ## Solver
 
-Kleaver can leverage several backend SMT solvers to compute the query see xref:solver_cahin.adoc[Solver Chain] for details.
+Kleaver can leverage several backend SMT solvers to compute the query see xref:solver_chain.adoc[Solver Chain] for details.
 
 ## Query Logging
 
-To log the queries issued by Kleaver to the underlying solver see xref:solver_cahin.adoc[Solver Chain] for details.
+To log the queries issued by Kleaver to the underlying solver see xref:solver_chain.adoc[Solver Chain] for details.
 
 To select where to store the log, you can use the `-query-log-dir` option.
 The default value is the current working directory.

@@ -5,7 +5,7 @@
 
 ## Introduction
 
-The KQuery language is the textual representation of constraint expressions and queries which is used as input to the xref:kleaver.adoc[Kleaver] constraint solver. 
+The KQuery language is the textual representation of constraint expressions and queries which is used as input to the xref:kleaver_options.adoc[Kleaver] constraint solver. 
 
 Currently the language is capable of representing quantifier free formulas over bitvectors and arrays, with direct support for all standard operations on bitvectors.
 The language has been designed to be compact and easy to read and write. 
