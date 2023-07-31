@@ -131,7 +131,7 @@ See this https://github.com/klee/klee/issues/902[issue] for more details.
 Note that we could have used `-O0 -Xclang -disable-O0-optnone` as well but because we are going to run Coreutils with optimisations later, it is better to compile with `-O1 -Xclang -disable-llvm-passes`.
 The `-O1` version emits bitcode that is more suited for optimisation, so we prefer to use that in this case.
 
-`-D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__` is another set of *important flags*.
+`-D\__NO_STRING_INLINES -D_FORTIFY_SOURCE=0 -U__OPTIMIZE\__` is another set of *important flags*.
 In later versions of LLVM, `clang` emits safe version of certain library functions.
 For example it replaces `fprintf` with `__fprintf_chk`, which KLEE does not model.
 That means it will treat it as an external function and concretize state.
@@ -224,12 +224,12 @@ We provide a POSIX runtime which is designed to work with KLEE and the uClibc li
 As before, `cat` prints out its version information (note that this time all the text is written out), but we now have a number of additional information output by KLEE.
 In this case, most of these warnings are innocuous, but for completeness here is what they mean:
 
-* _undefined reference to function: \___ctype_b_loc_: This warning means that the program contains a call to the function `__ctype_b_loc`, but that function isn't defined anywhere (we would have seen a lot more of these if we had not linked with uClibc and the POSIX runtime).
+* _undefined reference to function: \__ctype_b_loc_: This warning means that the program contains a call to the function `__ctype_b_loc`, but that function isn't defined anywhere (we would have seen a lot more of these if we had not linked with uClibc and the POSIX runtime).
 If the program actually ends up making a call to this function while it is executing, KLEE won't be able to interpret it and may terminate the program.
 * _executable has module level assembly (ignoring)_: Some file compiled in to the application had file level inline-assembly, which KLEE can't understand.
 In this case this comes from uClibc and is unused, so this is safe.
 * _calling \__user_main with extra arguments_: This indicates that the function was called with more arguments than it expected, it is almost always innocuous.
-In this case `__user_main` is actually the `main()` function for `cat`, which KLEE has renamed it when linking with uClibc.
+In this case `__user_main` is actually the `main()` function for `cat`, which KLEE has renamed when linking with uClibc.
 `main()` is being called with additional arguments by uClibc itself during startup, for example the environment pointer.
 * _calling external: getpagesize()_: This is an example of KLEE calling a function which is used in the program but is never defined.
 What KLEE actually does in such cases is try to call the native version of the function, if it exists.
@@ -268,7 +268,6 @@ usage: (klee_init_env) [options] [program arguments]
 
 As an example, lets run echo with a symbolic argument of 3 characters.
 
-[source,bash,subs="+macros"]
 ----
 src$ klee --libc=uclibc --posix-runtime ./echo.bc --sym-arg 3
 KLEE: NOTE: Using klee-uclibc : /usr/local/lib/klee/runtime/klee-uclibc.bca
@@ -317,7 +316,7 @@ There is NO WARRANTY, to the extent permitted by law.
   \v     vertical tab
 
 NOTE: your shell may have its own version of echo, which usually supersedes
-the version described here.  Please refer to your shell+++'+++s documentation
+the version described here.  Please refer to your shell's documentation
 for details about the options it supports.
 
 Report bugs to <bug-coreutils@gnu.org>.

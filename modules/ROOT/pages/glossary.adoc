@@ -1,0 +1,19 @@
+solver
+SMT
+concrete execution
+symbolic execution
+dynamic symbolic execution
+state
+path
+concrete value
+concretisation
+symbolic value
+program path
+path condition
+path constraint
+execution/process tree
+Z3
+STP
+MetaSMT
+uClibc?
+whitebox fuzzer

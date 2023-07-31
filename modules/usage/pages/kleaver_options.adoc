@@ -1,0 +1,54 @@
+= Kleaver's Options
+:description: Overview of Kleaver’s main command-line options.
+:sectanchors:
+:page-tags: kleaver
+
+## Kleaver usage
+
+----
+$ kleaver [options] <input query log>
+----
+
+In particular, `<input query log>` must be a file containing a query in xref:kquery.adoc[KQuery] format.
+To get a complete list of Kleaver's command-line options run: `kleaver --help`
+
+The remainder of this page illustrates Kleaver's distinctive command-line options.
+
+## Parsing
+
+Kleaver parses the input query log assuming the most general definition of the xref:kquery.adoc[KQuery] format.
+A KQuery source file consists of a sequence of declarations:
+
+[source,ebnf]
+----
+kquery = { array-declaration | query-command }
+----
+
+In particular, the set of array declarations can be used in several distinct queries.
+
+### Optimise parsing in case of independent queries
+
+An input query log may contain independent queries, that is query declarations that immediately follow their own array declarations.
+For instance, KLEE logs the queries issued to the solver as a list of independent queries.
+In this scenario, it is possible to optimize Kleaver runtime to substantially reduce its memory footprint by running Kleaver with the option `-clear-array-decls-after-query`.
+For example:
+
+----
+$ kleaver --clear-array-decls-after-query=true klee-queries.kquery
+----
+
+## Solver
+
+Kleaver can leverage several backend SMT solvers to compute the query see xref:solver_cahin.adoc[Solver Chain] for details.
+
+## Query Logging
+
+To log the queries issued by Kleaver to the underlying solver see xref:solver_cahin.adoc[Solver Chain] for details.
+
+To select where to store the log, you can use the `-query-log-dir` option.
+The default value is the current working directory.
+For example:
+
+----
+$ kleaver --query-log-dir=kleaver-log query.kquery
+----
