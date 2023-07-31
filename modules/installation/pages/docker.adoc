@@ -10,7 +10,6 @@ Our Docker images are one of the fastest ways to get started.
 Assuming you have Docker installed, you can run the following to try
 the latest release of KLEE:
 
-[source,bash]
 ----
 $ docker pull klee/klee:3.0
 $ docker run --rm -ti --ulimit='stack=-1:-1' klee/klee:3.0
@@ -40,14 +39,12 @@ Our GitHub repository is linked to DockerHub so that changes to particular branc
 
 To pull down the latest build of a particular Docker image run:
 
-[source,bash]
 ----
 $ docker pull klee/klee
 ----
 
 If you want to use a tagged revision of KLEE you should instead run:
 
-[source,bash]
 ----
 $ docker pull klee/klee:<TAG>
 ----
@@ -61,7 +58,6 @@ NOTE: This process pulls images containing code compiled by a third-party servic
 
 If you want to build the Docker image manually instead of pulling the image from DockerHub you can do so by running:
 
-[source,bash]
 ----
 $ git clone https://github.com/klee/klee.git
 $ cd klee
@@ -76,7 +72,6 @@ Now that you have a KLEE Docker image you can try creating a container from the 
 The simplest thing to try is creating a temporary container and gain shell access.
 To do this run
 
-[source,bash]
 ----
 $ docker run --rm -ti --ulimit='stack=-1:-1' klee/klee
 ----
@@ -87,7 +82,6 @@ NOTE: The `--ulimit` option sets an unlimited stack size inside the container. T
 
 If this worked correctly your shell prompt will have changed and you will be the `klee` user.
 
-[source,bash]
 ----
 klee@3c098b05ca85:~$ whoami
 klee
@@ -96,7 +90,6 @@ klee
 You can now try running KLEE inside the container, where you should
 see an output similar to:
 
-[source,bash]
 ----
 klee@3c098b05ca85:~$ klee --version
 KLEE 3.0 (https://klee.github.io)
@@ -112,7 +105,6 @@ LLVM (http://llvm.org/):
 
 and for Clang:
 
-[source,bash]
 ----
 $ clang --version
 clang version 13.0.1 (https://github.com/llvm/llvm-project.git 75e33f71c2dae584b13a7d1186ae0a038ba98838)
@@ -123,7 +115,6 @@ InstalledDir: /tmp/llvm-130-install_O_D_A/bin
 
 Now exit the container:
 
-[source,bash]
 ----
 klee@3c098b05ca85:~$ exit
 ----
@@ -136,7 +127,6 @@ The earlier example didn't do anything interesting with KLEE and threw the creat
 Here is a simple example that does something slightly more interesting with KLEE and also shows how a container can be persisted.
 To create and enter the container run:
 
-[source,bash]
 ----
 $ docker run -ti --name=my_first_klee_container --ulimit='stack=-1:-1' klee/klee
 ----
@@ -145,7 +135,6 @@ Notice we didn't use `--rm` so the container will not be destroyed when we exit 
 
 Now inside the container you can try running the following:
 
-[source,bash]
 ----
 klee@3c098b05ca85:~$ pwd
 /home/klee
@@ -172,14 +161,12 @@ klee-last  klee-out-0  klee_build  klee_src  test.bc  test.c
 
 Now exit the container:
 
-[source,bash]
 ----
 klee@3c098b05ca85:~$ exit
 ----
 
 We can check that the container still exists by running:
 
-[source,bash]
 ----
 $ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                     PORTS               NAMES
@@ -188,7 +175,6 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 You can restart the container by running:
 
-[source,bash]
 ----
 $ docker start -ai my_first_klee_container
 klee@1c408467bdf7:~$ ls
@@ -199,7 +185,6 @@ klee@1c408467bdf7:~$ exit
 As you can see the files we created earlier are still present.
 When you are finished with the container you can run:
 
-[source,bash]
 ----
 $ docker rm my_first_klee_container
 ----

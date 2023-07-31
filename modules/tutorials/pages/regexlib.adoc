@@ -20,7 +20,6 @@ The first step is to compile the source code using a compiler which can generate
 
 From within the `examples/regexp` directory execute:
 
-[source,bash]
 ----
 $ clang -I ../../include -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone Regexp.c
 ----
@@ -32,7 +31,6 @@ The `-I` argument is used so that the compiler can find https://github.com/klee/
 
 If you have the LLVM tools installed in your path, you can verify that this step worked by running `llvm-nm`` on the generated file:
 
-[source,bash]
 ----
 $ llvm-nm Regexp.bc
                  U klee_make_symbolic
@@ -51,7 +49,6 @@ For "real" programs with multiple inputs, the http://llvm.org/cmds/llvm-link.htm
 
 The next step is to execute the code with KLEE (number of instructions varies between LLVM versions and optimisation levels):
 
-[source,bash]
 ----
 $ klee --only-output-states-covering-new Regexp.bc
 KLEE: output directory = "klee-out-0"

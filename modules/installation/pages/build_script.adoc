@@ -1,7 +1,7 @@
 = Building KLEE and its Dependencies
 :description: Build KLEE automatically.
 :sectanchors:
-:page-tags: script
+:page-tags: build
 
 KLEE is a symbolic execution framework that can be built with a multitude of different components (multiple LLVM versions, several solvers: STP, Z3, MetaSMT) and run on a variety of systems (e.g., Linux (Ubuntu), macOS, FreeBSD).
 
@@ -18,7 +18,6 @@ To locally build a reasonable configuration and install all dependencies, use th
 * uClibc: to test applications with systems interaction
 * libc++: to test {cpp} applications
 
-[source,bash]
 ----
 $ BASE=$HOME/klee_deps COVERAGE=0 ENABLE_DOXYGEN=0 USE_TCMALLOC=1 LLVM_VERSION=13 ENABLE_OPTIMIZED=1 ENABLE_DEBUG=0 DISABLE_ASSERTIONS=1 REQUIRES_RTTI=1 SOLVERS=STP:Z3 GTEST_VERSION=1.11.0 UCLIBC_VERSION=klee_uclibc_v1.3 TCMALLOC_VERSION=2.9.1 SANITIZER_BUILD= STP_VERSION=master MINISAT_VERSION=master SQLITE_VERSION=3400100 Z3_VERSION=4.8.15 USE_LIBCXX=1 KLEE_RUNTIME_BUILD="Debug+Asserts" ./scripts/build/build.sh klee --install-system-deps
 ----
@@ -27,7 +26,6 @@ $ BASE=$HOME/klee_deps COVERAGE=0 ENABLE_DOXYGEN=0 USE_TCMALLOC=1 LLVM_VERSION=1
 
 To get started, check out the KLEE source code:
 
-[source,bash]
 ----
 $ git clone https://github.com/klee/klee.git
 $ cd klee
@@ -76,14 +74,12 @@ This defines where components are installed if they are not part of system softw
 
 A full invocation to install STP (version 2.3.3) with minisat as SAT solver (version git master) could be :
 
-[source,bash]
 ----
 $ BASE="$HOME/klee_deps" MINISAT_VERSION="master" STP_VERSION="2.3.3" SOLVERS="stp" ./scripts/build/build.sh solvers
 ----
 
 If the build was successful, all the sources and build artifacts can be found in the `$BASE` directory.
 
-[source,bash]
 ----
 $ ls $BASE
 minisat minisat-build minisat-install stp-2.3.3 stp-2.3.3-build stp-2.3.3-install
@@ -105,14 +101,12 @@ Use those options to mix and match your required setup.
 
 To locally build our standard configuration, use the following option:
 
-[source,bash]
 ----
 $ COVERAGE=0 USE_TCMALLOC=1 BASE=$HOME/klee_deps LLVM_VERSION=13 ENABLE_OPTIMIZED=1 ENABLE_DEBUG=1 DISABLE_ASSERTIONS=0 REQUIRES_RTTI=0 SOLVERS=STP:Z3 GTEST_VERSION=1.11.0 UCLIBC_VERSION=klee_uclibc_v1.3 TCMALLOC_VERSION=2.7 SANITIZER_BUILD= STP_VERSION=2.3.3 MINISAT_VERSION=master SQLITE_VERSION=3400100 Z3_VERSION=4.8.14 USE_LIBCXX=1 KLEE_RUNTIME_BUILD="Debug+Asserts" ./scripts/build/build.sh klee
 ----
 
 For example, to have address sanitized builds with LLVM 11.0 use:
 
-[source,bash]
 ----
 $ SANITIZER_BUILD=address DISABLE_ASSERTIONS=0 ENABLE_OPTIMIZED=0 USE_TCMALLOC=0 SOLVERS=STP USE_LIBCXX=0 LLVM_VERSION=11.0 STP_VERSION="2.3.3" ENABLE_DEBUG=1 UCLIBC_VERSION=klee_uclibc_v1.3 REQUIRES_RTTI=0 ./scripts/build/build.sh klee
 ----

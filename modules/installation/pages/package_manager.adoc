@@ -14,7 +14,6 @@ Getting started with it is as fast as or faster than using the xref:docker.adoc[
 
 To make the package available in an ephemeral shell, ensure https://nixos.org/download.html[you have Nix or are running NixOS], and run:
 
-[source,bash]
 ----
 $ nix-shell -p klee
 ----
@@ -51,7 +50,6 @@ If you want a debug build of KLEE, you would use the https://nixos.org/guides/ni
 
 NOTE: If any of the build inputs change from the defaults, Nix will no longer be able to fetch it from the NixOS binary cache, and a local build will occur.
 
-[source,bash]
 ----
 $ nix-shell -p 'klee.override { debug = true; }'
 ----
@@ -68,14 +66,12 @@ The current procedure for installing KLEE using https://brew.sh/[Homebrew] is ou
 1. Install dependencies (Linux only): Homebrew and KLEE require some additional dependencies on Linux.
 On Ubuntu:
 +
-[source,bash]
 ----
 $ sudo apt-get install build-essential curl file git
 ----
 +
 For Ubuntu>=16.04, some additional packages my be required (by KLEE) along with the ones mentioned above:
 +
-[source,bash]
 ----
 $ sudo apt-get install gcc-multilib g++-multilib
 ----
@@ -84,14 +80,12 @@ $ sudo apt-get install gcc-multilib g++-multilib
 Homebrew runs on macOS and Linux, but can be installed on Windows 10 using WSL.
 Currently, you can install Homebrew with:
 +
-[source,bash]
 ----
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ----
 
 3. Install KLEE: You can now install KLEE with:
 +
-[source,bash]
 ----
 $ brew install klee
 ----

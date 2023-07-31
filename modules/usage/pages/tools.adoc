@@ -230,8 +230,7 @@ The testcases in the queue can be converted to `.ktest` files so that they can b
 # Ignores hidden directories.
 # AFL-generated testcases always begin with 'id:'
 
-find ./queue -not -path '*/\.*' -type f -name 'id:*'    \
-    -exec ktest-gen --bout-file {}.ktest --sym-file {} \;
+$ find ./queue -not -path '*/\.*' -type f -name 'id:*' -exec ktest-gen --bout-file {}.ktest --sym-file {} \;
 ----
 
 KLEE can subsequently be run with the `-seed-dir` option to seed further exploration.

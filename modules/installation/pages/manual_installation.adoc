@@ -21,21 +21,18 @@ In particular, you should install the programs and libraries listed below.
 
 Under Ubuntu, use:
 
-[source,bash]
 ----
 $ sudo apt-get install build-essential cmake curl file g++-multilib gcc-multilib git libcap-dev libgoogle-perftools-dev libncurses5-dev libsqlite3-dev libtcmalloc-minimal4 python3-pip unzip graphviz doxygen
 ----
 
 Under macOS, run:
 
-[source,bash]
 ----
 $ brew install curl git cmake python unzip gperftools sqlite3 graphviz doxygen bash
 ----
 
 You should also install `lit` to enable testing, `tabulate` to support additional features in `klee-stats` and `wllvm` to make it easier to compile programs to LLVM bitcode:
 
-[source,bash]
 ----
 $ sudo pip3 install lit wllvm
 $ sudo apt-get install python3-tabulate
@@ -43,7 +40,6 @@ $ sudo apt-get install python3-tabulate
 
 Use `--user` for `pip3` to install packages for the current user only:
 
-[source,bash]
 ----
 $ pip3 install --user lit wllvm
 ----
@@ -57,14 +53,12 @@ See http://llvm.org/docs/GettingStarted.html[Getting Started with the LLVM Syste
 
 If you are using a recent Ubuntu (e.g. 21.10) or Debian, we recommend to use the LLVM packages provided by LLVM itself. 
 
-[source,bash]
 ----
 $ sudo apt-get install clang-13 llvm-13 llvm-13-dev llvm-13-tools
 ----
 
 If you are using macOS, you can install older LLVM packages using brew:
 
-[source,bash]
 ----
 $ brew install llvm@13
 ----
@@ -94,7 +88,6 @@ If you want to run the unit tests you need to perform this step and also pass `-
 
 We currently recommend version `1.11.0`, so grab the sources for it.
 
-[source,bash]
 ----
 $ curl -OL https://github.com/google/googletest/archive/release-1.11.0.zip
 $ unzip release-1.11.0.zip
@@ -107,7 +100,6 @@ This will create a directory called `googletest-release-1.11.0`.
 By default, KLEE works on closed programs (programs that don't use any external code such as C library functions).
 However, if you want to use KLEE to run real programs you will want to enable the KLEE POSIX runtime, which is built on top of the http://uclibc.org[uClibc] C library.
 
-[source,bash]
 ----
 $ git clone https://github.com/klee/klee-uclibc.git
 $ cd klee-uclibc
@@ -126,7 +118,6 @@ To tell KLEE to use both klee-uclibc and the POSIX runtime, pass `-DENABLE_POSIX
 
 ### Get KLEE sources
 
-[source,bash]
 ----
 $ git clone https://github.com/klee/klee.git
 ----
@@ -137,7 +128,6 @@ To be able to run {cpp} code, you also need to enable support for the {cpp} stan
 
 Make sure that `clang++-13` is in your path. Then, run from the main KLEE source directory:
 
-[source,bash]
 ----
 $ LLVM_VERSION=13 BASE=<LIBCXX_DIR> ENABLE_OPTIMIZED=1 DISABLE_ASSERTIONS=1 ENABLE_DEBUG=0 REQUIRES_RTTI=1 klee/scripts/build/build.sh libcxx
 ----
@@ -166,14 +156,12 @@ KLEE must be built "out of source", so first create a build directory.
 You can create this wherever you like.
 Below, we assume you create this directory inside KLEE's repository.
 
-[source,bash]
 ----
 $ mkdir build
 ----
 
 Now `cd` into the build directory and run CMake to configure KLEE where `<KLEE_SRC_DIRECTORY>` is the path to the KLEE git repository you cloned in the previous step.
 
-[source,bash]
 ----
 $ cd build
 $ cmake <CMAKE_OPTIONS> <KLEE_SRC_DIRECTORY>
@@ -183,7 +171,6 @@ $ cmake <CMAKE_OPTIONS> <KLEE_SRC_DIRECTORY>
 
 For example, if you want to build KLEE with STP, the POSIX runtime, klee-uclibc and unit testing then the command line would look something like this:
 
-[source,bash]
 ----
 $ cmake -DENABLE_SOLVER_STP=ON -DENABLE_POSIX_RUNTIME=ON -DKLEE_UCLIBC_PATH=<KLEE_UCLIBC_SOURCE_DIR> -DENABLE_UNIT_TESTS=ON -DGTEST_SRC_DIR=<GTEST_SOURCE_DIR> <KLEE_SRC_DIRECTORY>
 ----
@@ -192,7 +179,6 @@ Where `<KLEE_UCLIBC_SOURCE_DIR>` is the absolute path to the klee-uclibc source 
 
 Or more concretely, with `/src` as working directory, `/src/klee/build` as build directory, and libcxx support enabled:
 
-[source,bash]
 ----
 $ cmake -DENABLE_SOLVER_STP=ON -DENABLE_POSIX_RUNTIME=ON -DKLEE_UCLIBC_PATH=/src/klee-uclibc -DENABLE_UNIT_TESTS=ON -DGTEST_SRC_DIR=/src/googletest-release-1.11.0/ -DENABLE_KLEE_LIBCXX=ON -DKLEE_LIBCXX_DIR=/src/libcxx/libc++-install-130/ -DKLEE_LIBCXX_INCLUDE_DIR=/src/libcxx/libc++-install-130/include/c++/v1/ -DENABLE_KLEE_EH_CXX=ON -DKLEE_LIBCXXABI_SRC_DIR=/src/libcxx/llvm-130/libcxxabi/ ..
 ----
@@ -210,7 +196,6 @@ If you don't want to install tcmalloc (`libtcmalloc-minimal4 libgoogle-perftools
 
 From the ``build`` directory created in the previous step run:
 
-[source,bash]
 ----
 $ make
 ----
@@ -219,21 +204,18 @@ $ make
 
 If KLEE was configured with system tests enabled then you can run them like this:
 
-[source,bash]
 ----
 $ make systemtests
 ----
 
 If you want to invoke `lit` manually use:
 
-[source,bash]
 ----
 $ lit test/
 ----
 
 This way you can run individual tests or subsets of the suite:
 
-[source,bash]
 ----
 $ lit test/regression
 ----
@@ -242,7 +224,6 @@ $ lit test/regression
 
 If KLEE was configured with unit tests enabled then you can build and run the unit tests:
 
-[source,bash]
 ----
 $ make unittests
 ----

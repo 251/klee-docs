@@ -40,17 +40,13 @@ run.istats:: This is a binary file containing global statistics emitted by KLEE 
 
 ## Other global files
 
-all-queries.kquery:: This file contains all the queries KLEE made during execution in the 
-TODO!!
-[KQuery]({{site.baseurl}}/docs/kquery) format.
+all-queries.kquery:: This file contains all the queries KLEE made during execution in the xref:usage:kquery.adoc[KQuery] format.
 Note these are the queries before any optimisation (e.g. caching, constraint independence) so it is possible that some of the queries logged are never executed by KLEE's underlying solver or are modified before being executed by KLEE's underlying solver.
 The generation of this file can be enabled by specifying the option `--use-query-log=all:kquery` to KLEE.
 all-queries.smt2:: This file contains all the queries KLEE made during execution in the http://smtlib.cs.uiowa.edu/[SMT-LIBv2].
 It contains the same information as all-queries.kquery.
 The generation of this file can be enabled by specifying the option `--use-query-log=all:smt2` to KLEE.
-solver-queries.kquery:: This file contains all the queries passed to KLEE's underlying
-TODO!!
-solver during execution in the [KQuery]({{site.baseurl}}/docs/kquery) format.
+solver-queries.kquery:: This file contains all the queries passed to KLEE's underlying solver during execution in the xref:usage:kquery.adoc[KQuery] format.
 Note these are the queries after all optimisations (e.g. caching, constraint independence) are performed.
 The generation of this file can be enabled by specifying the option `--use-query-log=solver:kquery` to KLEE.
 solver-queries.smt2:: This file contains all the queries passed to KLEE's underlying solver during execution in the http://smtlib.cs.uiowa.edu/[SMT-LIBv2] format.

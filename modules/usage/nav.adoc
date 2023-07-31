@@ -6,3 +6,4 @@
 * xref:solver_chain.adoc[]
 * xref:kleaver_options.adoc[]
 * xref:kquery.adoc[]
+* xref:coreutils_experiments.adoc[]

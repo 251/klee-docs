@@ -37,7 +37,6 @@ int main() {
 }
 ----
 
-[source,bash]
 ----
 $ clang -O0 -I klee_path/include/ -g -c -emit-llvm p.c -o p.bc
 $ klee p.bc
