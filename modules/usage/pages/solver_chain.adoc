@@ -62,7 +62,7 @@ When set to true (*default: false*) every query that the STP solver receives wil
 
 When set to true (*default: false*) unexpected solver failures in the STP solver will be ignored.
 
-`-use-construct-hash`
+`-use-construct-hash-stp`
 
 When set to true (*default: true*) constructed STP expressions will be cached (and then cleared) for each constraint to facilitate expression re-use.
 
